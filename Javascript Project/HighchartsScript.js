@@ -118,7 +118,7 @@ Highcharts.each(data, function (row) {
 });
 
 // Build the chart
-var chart = Highcharts.mapChart('container', {
+var chart = Highcharts.mapChart("container", {
     title: {
         text: 'USA 2016 Presidential Election Results'
     },
