@@ -51,7 +51,7 @@ div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
-#header, #container, #footer{display:block; width:960px; margin:0 auto;}
+#header, #containercss, #footer{display:block; width:960px; margin:0 auto;}
 
 nav ul{margin:0; padding:0; list-style:none;}
 
@@ -98,59 +98,59 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 /*----------------------------------------------Content Area-------------------------------------*/
 
-#container{padding:30px 0;}
-#container section{display:block; width:100%; margin:0 0 30px 0; padding:0;}
-#container .last{margin:0;}
-#container .more{text-align:right;}
+#containercss{padding:30px 0;}
+#containercss section{display:block; width:100%; margin:0 0 30px 0; padding:0;}
+#containercss .last{margin:0;}
+#containercss .more{text-align:right;}
 
 /* ------Slider-----*/
 
-#container #slider{margin-bottom:50px;}
+#containercss #slider{margin-bottom:50px;}
 
 /* ------Homepage-----*/
 
-#container #homepage{display:block; width:100%; line-height:1.6em;}
+#containercss #homepage{display:block; width:100%; line-height:1.6em;}
 
-#container #homepage #services{padding:0 0 30px 0; border-bottom:1px solid #DEDEDE;}
-#container #homepage #services article{}
-#container #homepage #services figure{display:inline; float:left;}
-#container #homepage #services strong{float:left; margin:8px 0 0 10px; padding:0; font-size:14px; font-weight:bold; text-transform:uppercase;}
-#container #homepage #services p{display:block; margin:0; padding:5px 0 0 0; clear:both; line-height:1.6em;}
+#containercss #homepage #services{padding:0 0 30px 0; border-bottom:1px solid #DEDEDE;}
+#containercss #homepage #services article{}
+#containercss #homepage #services figure{display:inline; float:left;}
+#containercss #homepage #services strong{float:left; margin:8px 0 0 10px; padding:0; font-size:14px; font-weight:bold; text-transform:uppercase;}
+#containercss #homepage #services p{display:block; margin:0; padding:5px 0 0 0; clear:both; line-height:1.6em;}
 
-#container #homepage #latest{padding:0 0 30px 0; border-bottom:1px solid #DEDEDE;}
-#container #homepage #latest article{}
-#container #homepage #latest article figure{}
-#container #homepage #latest article figure ul{margin:0; padding:0; list-style:none;}
-#container #homepage #latest article figure ul li{}
-#container #homepage #latest article figure ul li img{padding:4px; border:1px solid #D6D6D6;}
-#container #homepage #latest article figure figcaption{display:block; width:100%; margin-top:20px; text-align:right;}
+#containercss #homepage #latest{padding:0 0 30px 0; border-bottom:1px solid #DEDEDE;}
+#containercss #homepage #latest article{}
+#containercss #homepage #latest article figure{}
+#containercss #homepage #latest article figure ul{margin:0; padding:0; list-style:none;}
+#containercss #homepage #latest article figure ul li{}
+#containercss #homepage #latest article figure ul li img{padding:4px; border:1px solid #D6D6D6;}
+#containercss #homepage #latest article figure figcaption{display:block; width:100%; margin-top:20px; text-align:right;}
 
 /* ------Main Content-----*/
 
-#container #content{float:left; width:630px; line-height:1.6em;}
+#containercss #content{float:left; width:630px; line-height:1.6em;}
 
-#container #content #posts{}
-#container #content #posts ul{margin:0; padding:0; list-style:none;}
-#container #content #posts ul li{display:block; width:100%; margin-bottom:30px;}
-#container #content #posts ul li.last{ margin-bottom:0;}
-#container #content #posts ul li article{}
-#container #content #posts ul li article figure{}
-#container #content #posts ul li article figure img{float:left; width:180px; height:150px; margin:0; padding:4px; border:1px solid #D6D6D6;}
-#container #content #posts ul li article figure figcaption{display:block; float:right; width:410px;}
-#container #content #posts ul li article figure h2{font-size:14px;}
-#container #content #posts ul li article figure footer{}
+#containercss #content #posts{}
+#containercss #content #posts ul{margin:0; padding:0; list-style:none;}
+#containercss #content #posts ul li{display:block; width:100%; margin-bottom:30px;}
+#containercss #content #posts ul li.last{ margin-bottom:0;}
+#containercss #content #posts ul li article{}
+#containercss #content #posts ul li article figure{}
+#containercss #content #posts ul li article figure img{float:left; width:180px; height:150px; margin:0; padding:4px; border:1px solid #D6D6D6;}
+#containercss #content #posts ul li article figure figcaption{display:block; float:right; width:410px;}
+#containercss #content #posts ul li article figure h2{font-size:14px;}
+#containercss #content #posts ul li article figure footer{}
 
 /* ------Right Column-----*/
 
-#container #right_column{float:right; width:280px;}
-#container #right_column h2.title{margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #DEDEDE;}
+#containercss #right_column{float:right; width:280px;}
+#containercss #right_column h2.title{margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #DEDEDE;}
 
-#container #right_column nav{display:block; width:100%;}
-#container #right_column nav ul{margin:0; padding:0; list-style:none;}
-#container #right_column nav li{margin:0 0 3px 0; padding:0;}
-#container #right_column nav li.last{margin-bottom:0;}
-#container #right_column nav a{display:block; margin:0; padding:5px 10px 5px 20px; color:#666666; background:url("../images/orange_file.gif") no-repeat 10px center #FFFFFF; text-decoration:none; border-bottom:1px dotted #666666;}
-#container #right_column nav a:hover{color:#FF9900; background-color:#FFFFFF;}
+#containercss #right_column nav{display:block; width:100%;}
+#containercss #right_column nav ul{margin:0; padding:0; list-style:none;}
+#containercss #right_column nav li{margin:0 0 3px 0; padding:0;}
+#containercss #right_column nav li.last{margin-bottom:0;}
+#containercss #right_column nav a{display:block; margin:0; padding:5px 10px 5px 20px; color:#666666; background:url("../images/orange_file.gif") no-repeat 10px center #FFFFFF; text-decoration:none; border-bottom:1px dotted #666666;}
+#containercss #right_column nav a:hover{color:#FF9900; background-color:#FFFFFF;}
 
 /*----------------------------------------------Footer-------------------------------------*/
 
