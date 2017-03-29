@@ -250,10 +250,6 @@ Highcharts.mapChart('mapcontainer', {
         text: 'Highmaps basic demo'
     },
 
-    subtitle: {
-        text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/gb/gb-all.js">United Kingdom</a>'
-    },
-
     mapNavigation: {
         enabled: true,
         buttonOptions: {
