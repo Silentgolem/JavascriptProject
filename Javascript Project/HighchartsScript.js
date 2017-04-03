@@ -1,331 +1,85 @@
-// New map-pie series type that also allows lat/lon as center option.
-// Also adds a sizeFormatter option to the series, to allow dynamic sizing
-// of the pies.
-Highcharts.seriesType('mappie', 'pie', {
-    center: null, // Can't be array by default anymore
-    clip: true, // For map navigation
-    states: {
-        hover: {
-            halo: {
-                size: 5
-            }
-        }
-    },
-    dataLabels: {
-        enabled: false
-    }
-}, {
-    getCenter: function () {
-        var options = this.options,
-            chart = this.chart,
-            slicingRoom = 2 * (options.slicedOffset || 0);
-        if (!options.center) {
-            options.center = [null, null]; // Do the default here instead
-        }
-        // Handle lat/lon support
-        if (options.center.lat !== undefined) {
-            var point = chart.fromLatLonToPoint(options.center);
-            options.center = [
-                chart.xAxis[0].toPixels(point.x, true),
-                chart.yAxis[0].toPixels(point.y, true)
-            ];
-        }
-        // Handle dynamic size
-        if (options.sizeFormatter) {
-            options.size = options.sizeFormatter.call(this);
-        }
-        // Call parent function
-        var result = Highcharts.seriesTypes.pie.prototype.getCenter.call(this);
-        // Must correct for slicing room to get exact pixel pos
-        result[0] -= slicingRoom;
-        result[1] -= slicingRoom;
-        return result;
-    },
-    translate: function (p) {
-        this.options.center = this.userOptions.center;
-        this.center = this.getCenter();
-        return Highcharts.seriesTypes.pie.prototype.translate.call(this, p);
-    }
-});
+$(function () {
 
-
-var data = [
-        // state, demVotes, repVotes, libVotes, grnVotes, sumVotes, winner, offset config for pies
-        ['Alabama', 729547, 1318255, 44467, 9391, 2101660, -1],
-        ['Alaska', 116454, 163387, 18725, 5735, 304301, -1],
-        ['Arizona', 1161167, 1252401, 106327, 34345, 2554240, -1],
-        ['Arkansas', 380494, 684782, 29829, 9473, 1104578, -1],
-        ['California', 8577206, 4390272, 467370, 271047, 13705895, 1, { lon: -1, drawConnector: false }],
-        ['Colorado', 1338870, 1202484, 144121, 38437, 2723912, 1],
-        ['Connecticut', 897572, 673215, 48676, 22841, 1642304, 1, { lat: -1.5, lon: 1 }],
-        ['Delaware', 235603, 185127, 14757, 6103, 441590, 1, { lat: -1.3, lon: 2 }],
-        ['District of Columbia', 282830, 12723, 4906, 4258, 304717, 1, { lat: -2, lon: 2 }],
-        ['Florida', 4504975, 4617886, 207043, 64399, 9394303, -1],
-        ['Georgia', 1877963, 2089104, 125306, 0, 4092373, -1],
-        ['Hawaii', 266891, 128847, 15954, 12737, 424429, 1, { lat: -0.5, lon: 0.5, drawConnector: false }],
-        ['Idaho', 189765, 409055, 28331, 8496, 635647, -1],
-        ['Illinois', 2977498, 2118179, 208682, 74112, 5378471, 1],
-        ['Indiana', 1039126, 1557286, 133993, 7841, 2738246, -1],
-        ['Iowa', 653669, 800983, 59186, 11479, 1525317, -1],
-        ['Kansas', 427005, 671018, 55406, 23506, 1176935, -1],
-        ['Kentucky', 628854, 1202971, 53752, 13913, 1899490, -1],
-        ['Louisiana', 780154, 1178638, 37978, 14031, 2010801, -1],
-        ['Maine', 352156, 332418, 37578, 13995, 736147, 1],
-        ['Maryland', 1502820, 878615, 78225, 33380, 2493040, 1, { lon: 0.6, drawConnector: false }],
-        ['Massachusetts', 1995196, 1090893, 138018, 47661, 3271768, 1, { lon: 3 }],
-        ['Michigan', 2268839, 2279543, 172136, 51463, 4771981, -1],
-        ['Minnesota', 1367716, 1322951, 112972, 36985, 2840624, 1, { lon: -1, drawConnector: false }],
-        ['Mississippi', 462127, 678284, 14411, 3595, 1158417, -1],
-        ['Missouri', 1054889, 1585753, 96404, 25086, 2762132, -1],
-        ['Montana', 174281, 273879, 28036, 7868, 484064, -1],
-        ['Nebraska', 273185, 485372, 38746, 8337, 805640, -1],
-        ['Nevada', 539260, 512058, 37384, 0, 1088702, 1],
-        ['New Hampshire', 348526, 345790, 30694, 6465, 731475, 1],
-        ['New Jersey', 1967444, 1509688, 72143, 37131, 3586406, 1, { lat: -1, lon: 1.2 }],
-        ['New Mexico', 380923, 316134, 74544, 9797, 781398, 1],
-        ['New York', 4145376, 2638135, 162273, 100110, 7045894, 1],
-        ['North Carolina', 2169496, 2345235, 130021, 1038, 4645790, -1],
-        ['North Dakota', 93758, 216794, 21434, 378, 332364, -1],
-        ['Ohio', 2320596, 2776683, 174266, 44310, 5315855, -1],
-        ['Oklahoma', 420375, 949136, 83481, 0, 1452992, -1],
-        ['Oregon', 991580, 774080, 93875, 49247, 1908782, 1],
-        ['Pennsylvania', 2874136, 2945302, 144826, 49334, 6013598, -1],
-        ['Rhode Island', 227062, 166454, 14700, 6171, 414387, 1, { lat: -0.7, lon: 1.7 }],
-        ['South Carolina', 855373, 1155389, 49204, 13034, 2073000, -1],
-        ['South Dakota', 117442, 227701, 20845, 0, 365988, -1],
-        ['Tennessee', 868853, 1519926, 70286, 15952, 2475017, -1],
-        ['Texas', 3877868, 4685047, 283492, 71558, 8917965, -1],
-        ['Utah', 222858, 375006, 39608, 7695, 645167, -1],
-        ['Vermont', 178573, 95369, 10078, 6758, 290778, 1, { lat: 2 }],
-        ['Virginia', 1981473, 1769443, 118274, 27638, 3896828, 1],
-        ['Washington', 1727840, 1210370, 160356, 57571, 3156137, 1],
-        ['West Virginia', 187519, 486304, 22958, 8016, 704797, -1],
-        ['Wisconsin', 1382947, 1407028, 106470, 31016, 2927461, -1],
-        ['Wyoming', 55973, 174419, 13287, 2515, 246194, -1]
-],
-    maxVotes = 0,
-    demColor = 'rgba(74,131,240,0.80)',
-    repColor = 'rgba(220,71,71,0.80)',
-    libColor = 'rgba(240,190,50,0.80)',
-    grnColor = 'rgba(90,200,90,0.80)';
-
-
-// Compute max votes to find relative sizes of bubbles
-Highcharts.each(data, function (row) {
-    maxVotes = Math.max(maxVotes, row[5]);
-});
-
-// Build the chart
-var chart = Highcharts.mapChart('container', {
-    title: {
-        text: 'USA 2016 Presidential Election Results'
-    },
-
-    chart: {
-        animation: false // Disable animation, especially for zooming
-    },
-
-    colorAxis: {
-        dataClasses: [{
-            from: -1,
-            to: 0,
-            color: 'rgba(244,91,91,0.5)',
-            name: 'Republican'
-        }, {
-            from: 0,
-            to: 1,
-            color: 'rgba(124,181,236,0.5)',
-            name: 'Democrat'
-        }, {
-            from: 2,
-            to: 3,
-            name: 'Libertarian',
-            color: libColor
-        }, {
-            from: 3,
-            to: 4,
-            name: 'Green',
-            color: grnColor
-        }]
-    },
-
-    mapNavigation: {
-        enabled: true
-    },
-    // Limit zoom range
-    yAxis: {
-        minRange: 2300
-    },
-
-    tooltip: {
-        useHTML: true
-    },
-
-    // Default options for the pies
-    plotOptions: {
-        mappie: {
-            borderColor: 'rgba(255,255,255,0.4)',
-            borderWidth: 1,
-            tooltip: {
-                headerFormat: ''
-            }
-        }
-    },
-
-    series: [{
-        mapData: Highcharts.maps['countries/us/us-all'],
-        data: data,
-        name: 'States',
-        borderColor: '#FFF',
-        showInLegend: false,
-        joinBy: ['name', 'id'],
-        keys: ['id', 'demVotes', 'repVotes', 'libVotes', 'grnVotes',
-            'sumVotes', 'value', 'pieOffset'],
-        tooltip: {
-            headerFormat: '',
-            pointFormatter: function () {
-                var hoverVotes = this.hoverVotes; // Used by pie only
-                return '<b>' + this.id + ' votes</b><br/>' +
-                    Highcharts.map([
-                        ['Democrats', this.demVotes, demColor],
-                        ['Republicans', this.repVotes, repColor],
-                        ['Libertarians', this.libVotes, libColor],
-                        ['Green', this.grnVotes, grnColor]
-                    ].sort(function (a, b) {
-                        return b[1] - a[1]; // Sort tooltip by most votes
-                    }), function (line) {
-                        return '<span style="color:' + line[2] +
-                            // Colorized bullet
-                            '">\u25CF</span> ' +
-                            // Party and votes
-                            (line[0] === hoverVotes ? '<b>' : '') +
-                            line[0] + ': ' +
-                            Highcharts.numberFormat(line[1], 0) +
-                            (line[0] === hoverVotes ? '</b>' : '') +
-                            '<br/>';
-                    }).join('') +
-                    '<hr/>Total: ' + Highcharts.numberFormat(this.sumVotes, 0);
-            }
-        }
-    }, {
-        name: 'Separators',
-        type: 'mapline',
-        data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
-        color: '#707070',
-        showInLegend: false,
-        enableMouseTracking: false
-    }, {
-        name: 'Connectors',
-        type: 'mapline',
-        color: 'rgba(130, 130, 130, 0.5)',
-        zIndex: 5,
-        showInLegend: false,
-        enableMouseTracking: false
-    }]
-});
-
-// When clicking legend items, also toggle connectors and pies
-Highcharts.each(chart.legend.allItems, function (item) {
-    var old = item.setVisible;
-    item.setVisible = function () {
-        var legendItem = this;
-        old.call(legendItem);
-        Highcharts.each(chart.series[0].points, function (point) {
-            if (chart.colorAxis[0].dataClasses[point.dataClass].name === legendItem.name) {
-                // Find this state's pie and set visibility
-                Highcharts.find(chart.series, function (item) {
-                    return item.name === point.id;
-                }).setVisible(legendItem.visible, false);
-                // Do the same for the connector point if it exists
-                var connector = Highcharts.find(chart.series[2].points, function (item) {
-                    return item.name === point.id;
-                });
-                if (connector) {
-                    connector.setVisible(legendItem.visible, false);
+    // Initiate the chart
+    $('#container').highcharts('Map', {
+        series: [
+        {
+            "type": "map",
+            "data": [
+                {
+                    "name": "West Tyrone",
+                    "path": "M293,-833,281,-810,289,-794,275,-779,272,-755,243,-732,240,-700L234,-700L222,-710,165,-691,139,-712,102,-688,106,-665,162,-631,177,-640,187,-619,199,-602,229,-595,243,-584,228,-580,222,-568,201,-527,223,-515L223,-515L232,-502L232,-502L265,-509,271,-517L284,-517L292,-506,311,-503,326,-505,332,-514,340,-508,371,-520,391,-526,395,-536,413,-533,418,-548,431,-551,440,-556,436,-574,448,-593,439,-629,448,-634,439,-637L439,-637L437,-665,431,-673,442,-683,452,-686,449,-691,457,-709,461,-725,475,-729,463,-741,430,-740,421,-734,376,-768,373,-788,344,-792,355,-803,340,-816,326,-804z"
+                },
+                {
+                    "name": "Foyle",
+                    "path": "M398,-893,385,-900,379,-902,365,-888,347,-893,332,-894,328,-891,317,-882,310,-878,299,-851,293,-833,326,-804,340,-816,355,-803,344,-792,373,-788,376,-768,421,-734,430,-740L430,-740L433,-758,440,-788,419,-804,418,-822,413,-825,418,-848,409,-843,392,-875,409,-893z"
+                },
+                {
+                    "name": "East Londonderry",
+                    "path": "M627,-982,590,-978,560,-969,549,-950,485,-968,478,-975,473,-969,458,-921,448,-914L448,-906L437,-891,409,-893,392,-875,409,-843,418,-848,413,-825,418,-822,419,-804,440,-788,430,-740,463,-741,475,-729,493,-753,504,-744,519,-759,536,-774,528,-780,546,-797,563,-789,576,-804,620,-806,611,-827,602,-842,611,-867,597,-896,611,-905,614,-935L630,-935z"
+                },
+                {
+                    "name": "North Antrim",
+                    "path": "M787,-960,808,-935L808,-894L801,-885,799,-867,817,-866,814,-858,805,-855,778,-818,795,-794L801,-794L795,-770,796,-740,816,-732,823,-718,804,-719,793,-715,799,-706,802,-698,741,-710,723,-701L711,-701L693,-700,681,-709,672,-697,636,-707,641,-718,620,-806,602,-842,611,-867,597,-896,611,-905,614,-935L630,-935L627,-982,654,-999,668,-985,707,-987,735,-962L751,-962L769,-978z"
+                },
+                {
+                    "name": "East Antrim",
+                    "path": "M802,-698,810,-682,825,-685,837,-683,841,-629,829,-632,819,-614L844,-614L868,-638L877,-638L882,-641,900,-646,918,-668,919,-695,898,-728,889,-724,888,-713,909,-689,906,-685,879,-710L879,-746L864,-756,838,-801,819,-821,832,-855,817,-866,814,-858,805,-855,778,-818,795,-794L801,-794L795,-770,796,-740,816,-732,823,-718,804,-719,793,-715z"
+                },
+                {
+                    "name": "South Antrim",
+                    "path": "M636,-707,635,-680,632,-670,642,-664,681,-655L681,-661L696,-664,705,-646,689,-635,683,-617,684,-586,698,-583,696,-574,711,-566,722,-571,743,-577,750,-583,765,-589,780,-577,789,-578,795,-586,805,-604,813,-598,819,-614,829,-632,841,-629,837,-683,810,-682,802,-698,741,-710,723,-701,693,-700,681,-709,672,-697z"
+                },
+                {
+                    "name": "Mid Ulster",
+                    "path": "M418,-548,458,-533,479,-542,496,-538,509,-550L518,-550L536,-533,542,-541,576,-523,585,-545,578,-551,582,-583,612,-587,621,-611,615,-625,609,-640,617,-686,635,-680,636,-707,641,-718,620,-806,576,-804,563,-789,546,-797,528,-780,536,-774,504,-744,493,-753,475,-729,461,-725,457,-709,449,-691,452,-686,442,-683,431,-673,437,-665,439,-637,448,-634,439,-629,448,-593,436,-574,440,-556z"
+                },
+                {
+                    "name": "Fermanagh And South Tyrone",
+                    "path": "M187,-619L187,-619L171,-616,151,-610,138,-607,124,-586,114,-589,96,-590,66,-601,48,-587,51,-577,37,-568,27,-572,3,-556,0,-541,15,-518,28,-506,37,-485,46,-482,64,-453,90,-436,99,-405,97,-390,117,-376,135,-387,165,-369,214,-313,219,-321,229,-315,260,-340,266,-337,275,-304,299,-301,293,-321,304,-337,305,-312,322,-310,325,-346,341,-367,365,-372,347,-417,352,-424,353,-433,385,-453,409,-484,439,-472,470,-417,488,-432,504,-468,533,-459,537,-488,555,-497L584,-497L576,-523,542,-541,536,-533,518,-550L509,-550L496,-538,479,-542,458,-533,418,-548,413,-533,395,-536,391,-526,340,-508,332,-514,326,-505,292,-506,284,-517L271,-517L265,-509,232,-502,223,-515,201,-527,228,-580,243,-584,229,-595,199,-602z"
+                },
+                {
+                    "name": "Newry And Armagh",
+                    "path": "M584,-497,623,-439L635,-439L647,-444,648,-427,657,-415,651,-361,660,-291,680,-267,662,-262,651,-274,642,-258,627,-241,615,-252,572,-240,566,-250,548,-241,537,-255,545,-268,536,-283L536,-300L554,-318,531,-339,516,-336,494,-351,484,-367L484,-373L466,-399,470,-417,488,-432,504,-468,533,-459,537,-488,555,-497z"
+                },
+                {
+                    "name": "Upper Bann",
+                    "path": "M585,-545,611,-527,615,-535,650,-536,654,-523,674,-529,675,-557L692,-557L695,-529,689,-524,705,-515,702,-496,714,-477L714,-463L704,-454L704,-444L693,-430,699,-423L699,-405L689,-400,683,-367,651,-361,657,-415,648,-427,647,-444,623,-439,584,-497,576,-523z"
+                },
+                {
+                    "name": "Lagan Valley",
+                    "path": "M843,-481L831,-481L811,-430L801,-430L784,-424,781,-405,766,-399,740,-409,735,-424,719,-415,699,-423,693,-430,704,-444L704,-454L714,-463L714,-477L702,-496,705,-515,689,-524,695,-529,692,-557L675,-557L696,-574,711,-566,743,-577,765,-589,780,-577,771,-557,784,-539,792,-545L796,-545L804,-527,825,-524z"
+                },
+                {
+                    "name": "Strangford",
+                    "path": "M912,-423L912,-423L933,-468,924,-477,928,-493,909,-527,916,-548,940,-530,954,-500,964,-497,960,-457,952,-454,951,-432,961,-423L961,-403L973,-394,982,-417,991,-426,993,-451,999,-459L999,-475L1000,-488,993,-499,990,-524L990,-532L978,-560,967,-556,961,-560,955,-556,943,-578L937,-578L927,-577L885,-577L882,-580,871,-572,858,-551,853,-542L840,-542L825,-524,843,-481,868,-472,879,-436,886,-432,894,-447z"
+                },
+                {
+                    "name": "North Down",
+                    "path": "M970,-593,967,-556,961,-560,955,-556,943,-578,885,-577,882,-580,871,-572,846,-586,859,-599,888,-619,912,-608L943,-608L948,-611,955,-604z"
+                },
+                {
+                    "name": "North Belfast",
+                    "path": "M834,-598C839,-588,835,-583,846,-586L829,-571,813,-569,795,-586,805,-604C817,-593,814,-601,819,-614,850,-615,836,-615,834,-598z"
+                },
+                {
+                    "name": "Belfast West",
+                    "path": "M813,-569L813,-569L796,-545,784,-539,771,-557,780,-577,789,-578,795,-586z"
+                },
+                {
+                    "name": "Belfast East",
+                    "path": "M871,-572,853,-542L840,-542L829,-571,846,-586z"
+                },
+                {
+                    "name": "Belfast South",
+                    "path": "M840,-542,825,-524,804,-527,796,-545,813,-569,829,-571z"
+                },
+                {
+                    "name": "South Down",
+                    "path": "M843,-481,868,-472,879,-436,886,-432,894,-447,912,-423,948,-396,957,-352,924,-313,912,-322,895,-295,820,-321,796,-316,777,-306,760,-256,680,-267,660,-291,651,-361,683,-367,689,-400,699,-405L699,-423L719,-415,735,-424,740,-409,766,-399,781,-405,784,-424,811,-430,831,-481z"
                 }
-            }
-        });
-        chart.redraw();
-    };
-});
-
-// Add the pies after chart load, optionally with offset and connectors
-Highcharts.each(chart.series[0].points, function (state) {
-    if (!state.id) {
-        return; // Skip points with no data, if any
-    }
-
-    var pieOffset = state.pieOffset || {},
-        centerLat = parseFloat(state.properties.latitude),
-        centerLon = parseFloat(state.properties.longitude);
-
-    // Add the pie for this state
-    chart.addSeries({
-        type: 'mappie',
-        name: state.id,
-        zIndex: 6, // Keep pies above connector lines
-        sizeFormatter: function () {
-            var yAxis = this.chart.yAxis[0],
-                zoomFactor = (yAxis.dataMax - yAxis.dataMin) /
-                    (yAxis.max - yAxis.min);
-            return Math.max(
-                this.chart.chartWidth / 45 * zoomFactor, // Min size
-                this.chart.chartWidth / 11 * zoomFactor * state.sumVotes / maxVotes
-            );
-        },
-        tooltip: {
-            // Use the state tooltip for the pies as well
-            pointFormatter: function () {
-                return state.series.tooltipOptions.pointFormatter.call({
-                    id: state.id,
-                    hoverVotes: this.name,
-                    demVotes: state.demVotes,
-                    repVotes: state.repVotes,
-                    libVotes: state.libVotes,
-                    grnVotes: state.grnVotes,
-                    sumVotes: state.sumVotes
-                });
-            }
-        },
-        data: [{
-            name: 'Democrats',
-            y: state.demVotes,
-            color: demColor
-        }, {
-            name: 'Republicans',
-            y: state.repVotes,
-            color: repColor
-        }, {
-            name: 'Libertarians',
-            y: state.libVotes,
-            color: libColor
-        }, {
-            name: 'Green',
-            y: state.grnVotes,
-            color: grnColor
-        }],
-        center: {
-            lat: centerLat + (pieOffset.lat || 0),
-            lon: centerLon + (pieOffset.lon || 0)
+            ]
         }
-    }, false);
-
-    // Draw connector to state center if the pie has been offset
-    if (pieOffset.drawConnector !== false) {
-        var centerPoint = chart.fromLatLonToPoint({
-            lat: centerLat,
-            lon: centerLon
-        }),
-            offsetPoint = chart.fromLatLonToPoint({
-                lat: centerLat + (pieOffset.lat || 0),
-                lon: centerLon + (pieOffset.lon || 0)
-            });
-        chart.series[2].addPoint({
-            name: state.id,
-            path: 'M' + offsetPoint.x + ' ' + offsetPoint.y +
-                'L' + centerPoint.x + ' ' + centerPoint.y
-        }, false);
-    }
+        ]
+    });
 });
-// Only redraw once all pies and connectors have been added
-chart.redraw();
