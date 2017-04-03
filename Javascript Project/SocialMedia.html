@@ -1,39 +1,46 @@
-﻿ <!--
-Design by Bryant Smith
-http://www.bryantsmith.com
-http://www.aszx.net
-email: template [-at-] bryantsmith [-dot-] com
-Released under Creative Commons Attribution 2.5 Generic.  In other words, do with it what you please; but please leave the link if you'd be so kind :)
-
-Name       : HD Monochrome
-Description: One column, with top naviation.  All divs, validations: XHTML Strict 1.0 & CSS
-Version    : 1.0
-Released   : 20081009 john
--->
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style.css" />
 <title>HD Monochrome by Bryant Smith</title>
+
 </head>
 
 <body>
     <div id="page">
         <div class="topNaviagationLink"><a href="index.html">Home</a></div>
-        <div class="topNaviagationLink"><a href="index.html">About</a></div>
-        <div class="topNaviagationLink"><a href="index.html">Portfolio</a></div>
-        <div class="topNaviagationLink"><a href="index.html">Services</a></div>
-	    <div class="topNaviagationLink"><a href="index.html">Contact</a></div>
 	</div>
-    <div id="mainPicture">
-    	<div class="picture">
-        	<div id="headerTitle">HD Monochrome</div>
-            <div id="headerSubtext">An XHTML 1.0 Strict Template by Bryant Smith</div>
-        </div>
+
+
+
+
+
+
+    <!-- Here are the setting for the social feed-->
+    <div class="social-feed-container">
+        <script>
+        $(document).ready(function(){
+        $('.social-feed-container').socialfeed({
+        // TWITTER
+        twitter: {
+        accounts: ['@I_Am_Legend_95'],              //Array: Specify a list of accounts from which to pull tweets
+        limit: 2,                                   //Integer: max number of tweets to load
+        consumer_key: 'YOUR_CONSUMER_KEY',          //String: consumer key. make sure to have your app read-only
+        consumer_secret: 'YOUR_CONSUMER_SECRET_KEY' //String: consumer secret key. make sure to have your app read-only
+        },
+
+        // GENERAL SETTINGS
+        length:400                                      //Integer: For posts with text longer than this length, show an ellipsis.
+        });
+        });
+        </script>
     </div>
+
+
+
+
+    <!-- HTML Template -->
         <div class="contentBox">
     	<div class="innerBox">
         	<h1>High Definition Monochrome</h1>
@@ -62,6 +69,26 @@ Released   : 20081009 john
 <!-- Please leave this in place after all of your content - thanks :) -->
     </div>
 </div>
-        
+
+
+
+
+       
+    <!-- Social-feed css -->
+    <link href="bower_components/social-feed/css/jquery.socialfeed.css" rel="stylesheet" type="text/css" />
+    <!-- font-awesome for social network icons -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Codebird.js - required for TWITTER -->
+    <script src="bower_components/codebird-js/codebird.js"></script>
+    <!-- doT.js for rendering templates -->
+    <script src="bower_components/doT/doT.min.js"></script>
+    <!-- Moment.js for showing "time ago" and/or "date"-->
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <!-- Moment Locale to format the date to your language (eg. italian lang)-->
+    <script src="bower_components/moment/locale/it.js"></script>
+    <!-- Social-feed js -->
+    <script src="bower_components/social-feed/js/jquery.socialfeed.js"></script> 
 </body>
 </html>
