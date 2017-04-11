@@ -12,34 +12,6 @@
         <div class="topNaviagationLink"><a href="index.html">Home</a></div>
 	</div>
 
-
-
-
-
-
-    <!-- Here are the setting for the social feed-->
-    <div class="social-feed-container">
-        <script>
-        $(document).ready(function(){
-        $('.social-feed-container').socialfeed({
-        // TWITTER
-        twitter: {
-        accounts: ['@I_Am_Legend_95'],              //Array: Specify a list of accounts from which to pull tweets
-        limit: 2,                                   //Integer: max number of tweets to load
-        consumer_key: 'YOUR_CONSUMER_KEY',          //String: consumer key. make sure to have your app read-only
-        consumer_secret: 'YOUR_CONSUMER_SECRET_KEY' //String: consumer secret key. make sure to have your app read-only
-        },
-
-        // GENERAL SETTINGS
-        length:400                                      //Integer: For posts with text longer than this length, show an ellipsis.
-        });
-        });
-        </script>
-    </div>
-
-
-
-
     <!-- HTML Template -->
         <div class="contentBox">
     	<div class="innerBox">
@@ -58,6 +30,15 @@
           <p>Vestibulum augue quam, interdum id, congue semper, convallis non, velit. Quisque augue tortor, tristique ac, scelerisque eget, aliquam id, sem. Aenean lorem. Fusce velit nibh, dapibus quis, laoreet nec, porta a, dui. Nullam ac urna. Proin eget elit. Nunc scelerisque venenatis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce congue, turpis ut commodo mattis, pede erat fringilla tellus, pulvinar suscipit odio lorem sed pede.</p></div>
         
         
+
+            <!-- Here is the container for the social feed-->
+            <section class="feed">
+                <div class="container">
+                </div>
+            </section>
+
+
+
         <h1>Yet Another One!</h1>
           <div class="contentText"><p>You may use this template on any site, anywhere, for free just please leave the link back to me in the footer.   This template validates XHTML Strict 1.0, CSS Validates as well; enjoy :) </p><br />
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer mi. Vivamus sit amet neque vitae sapien bibendum sodales. Curabitur elementum. Duis imperdiet. Donec eleifend porttitor sapien. Praesent leo. Quisque auctor velit sed tellus. Suspendisse potenti. Aenean laoreet imperdiet nunc. Donec commodo suscipit dolor. Aenean nibh. Sed id odio. Aliquam lobortis risus ut felis. Sed vehicula pellentesque quam.</p><br />
@@ -74,8 +55,7 @@
 
 
        
-    <!-- Social-feed css -->
-    <link href="bower_components/social-feed/css/jquery.socialfeed.css" rel="stylesheet" type="text/css" />
+    
     <!-- font-awesome for social network icons -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
     <!-- jQuery -->
@@ -90,5 +70,31 @@
     <script src="bower_components/moment/locale/it.js"></script>
     <!-- Social-feed js -->
     <script src="bower_components/social-feed/js/jquery.socialfeed.js"></script> 
+
+    <script>
+        $(document).ready(function () {
+
+            /* I believe this is for the input that the user put in on the demo sight
+            var updateFeed = function() {
+                var initialQuery = $('#query').val();
+                initialQuery = initialQuery.replace(" ", "");
+                var queryTags = initialQuery.split(",") */
+
+
+        $('.social-feed-container').socialfeed({
+        // TWITTER
+        twitter: {
+            accounts: ['@I_Am_Legend_95'],              //Array: Specify a list of accounts from which to pull tweets
+            limit: 2,                                   //Integer: max number of tweets to load
+            consumer_key: 'qzRXgkI7enflNJH1lWFvujT2P',          //String: consumer key. make sure to have your app read-only
+            consumer_secret: '8e7E7gHuTwyDHw9lGQFO73FcUwz9YozT37lEvZulMq8FXaPl8O' //String: consumer secret key. make sure to have your app read-only
+        },
+
+        // GENERAL SETTINGS
+        length: 400,                                      //Integer: For posts with text longer than this length, show an ellipsis.
+        show_media: true
+    });
+});
+    </script>
 </body>
 </html>
