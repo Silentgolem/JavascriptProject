@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <script src="https://www.highcharts.com/samples/maps/demo/all-maps/jquery.combobox.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStylesForCharts.css" media="screen" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -18,6 +19,11 @@
         <div class="topNaviagationLink"><a href="index.html">Home</a></div>
         <div class="topNaviagationLink"><a href="index.html">About</a></div>
 	</div>
+    <button class="expand">Edit Data</button>
+    <div id="contentexpanded">
+        <div id="data"></div>
+        <button id="save">Save Changes</button>
+    </div>
     <div id="container"></div>
     
     <script src="HighchartsScript.js"></script>  
