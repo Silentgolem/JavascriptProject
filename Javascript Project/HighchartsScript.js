@@ -4,7 +4,7 @@ $(document).ready(function () {
                 {
                     "name": "East Antrim",
                     "path": "M802,-698,810,-682,825,-685,837,-683,841,-629,829,-632,819,-614L844,-614L868,-638L877,-638L882,-641,900,-646,918,-668,919,-695,898,-728,889,-724,888,-713,909,-689,906,-685,879,-710L879,-746L864,-756,838,-801,819,-821,832,-855,817,-866,814,-858,805,-855,778,-818,795,-794L801,-794L795,-770,796,-740,816,-732,823,-718,804,-719,793,-715z",
-                    "data": "DUP David Hilditch<br/>Alliance Stewart Dickson<br/>UUP Roy Beggs<br/>DUP Gordon Lyons<br/>DUP John Stewart"
+                    "data": "DUP David Hilditch<br/>Alliance Stewart Dickson<br/>UUP Roy Beggs<br/>DUP Gordon Lyons<br/>UUP John Stewart"
                 },
                 {
                     "name": "East Belfast",
@@ -92,8 +92,41 @@ $(document).ready(function () {
                     "data": "DUP Thomas Buchannan<br/>Sinn Fein Micheala Boyle<br/>Sinn Fein Barry McElduff<br/>SDLP Daniel McCrossan<br/>Sinn Fein Declan McAleer"
                 }
     ];
+    var chartData = [{
+        "party": "Sinn Fein",
+        "seats": 0
+    }, {
+        "party": "SDLP",
+        "seats": 0
+    }, {
+        "party": "Alliance",
+        "seats": 0
+    }, {
+        "party": "Green Party",
+        "seats": 0
+    }, {
+        "party": "PBP",
+        "seats": 0
+    }, {
+        "party": "Independant",
+        "seats": 0
+    }, {
+        "party": "Other",
+        "seats": 0
+    }, {
+        "party": "TUV",
+        "seats": 0
+    }, {
+        "party": "UUP",
+        "seats": 0
+    }, {
+        "party": "DUP",
+        "seats": 0
+    }];
+
     $('#data').html(getData());
     generateMap();
+    generateChart();
     function generateMap() {
         $('#container').highcharts('Map', {
             title: { text: "Northern Ireland Assembly Election 2017" },
@@ -111,44 +144,143 @@ $(document).ready(function () {
                 headerFormat: '<span style="font-size:12px">{series.name}</span><br/>',
                 pointFormat: '{point.data}',
                 positioner: function () {
-                    return { x: 0, y: 400 };
+                    return { x: 0, y: 375 };
                 }
             }
         });
     }
-    function getData()
-    {
+    function generateChart() {
+        chartData = [{
+            "party": "Sinn Fein",
+            "colour": "#2f7c06",
+            "seats": 0
+        }, {
+            "party": "SDLP",
+            "colour": "#58ff00",
+            "seats": 0
+        }, {
+            "party": "Alliance",
+            "colour": "#f2ff00",
+            "seats": 0
+        }, {
+            "party": "Green Party",
+            "colour": "#9bffa2",
+            "seats": 0
+        }, {
+            "party": "PBP",
+            "colour": "#670c8e",
+            "seats": 0
+        }, {
+            "party": "Independant",
+            "colour": "#e3e4e5",
+            "seats": 0
+        }, {
+            "party": "Other",
+            "colour": "#efc956",
+            "seats": 0
+        }, {
+            "party": "TUV",
+            "colour": "#5399e0",
+            "seats": 0
+        }, {
+            "party": "UUP",
+            "colour": "#e8b4e7",
+            "seats": 0
+        }, {
+            "party": "DUP",
+            "colour": "#dd1822",
+            "seats": 0
+        }];
+        getChartData();
+        var sum = 0;
+        for (var x in chartData) {
+            sum += chartData[x].seats;
+        }
+        chartData.push({
+            "seats": sum,
+            "alpha": 0
+        });
+
+        var chart = AmCharts.makeChart("chartdiv", {
+            "type": "pie",
+            "startAngle": 0,
+            "radius": "90%",
+            "innerRadius": "50%",
+            "dataProvider": chartData,
+            "valueField": "seats",
+            "titleField": "party",
+            "alphaField": "alpha",
+            "labelsEnabled": false,
+            "pullOutRadius": 0,
+            "colorField": "colour",
+            "pieY": "95%"
+        });
+    }
+    function getData() {
         var input;
         var output = "<table border='1px' contenteditable='true'>";
-        for (var i = 0; i < data.length; i++)
-        {
+        for (var i = 0; i < data.length; i++) {
             output += "<tr><th contenteditable='false'>" + data[i].name + "</th>";
             input = data[i].data.split("<br/>");
             for (var j = 0; j < input.length; j++) {
-                output+="<th>"+input[j]+"</th>";
-                }
-            output+="</tr>"
+                output += "<th>" + input[j] + "</th>";
+            }
+            output += "</tr>"
         }
         output += "</table>";
         return output;
+    }
+    function getChartData() {
+        for (var i = 0; i < data.length; i++) {
+            var temp = data[i].data.split("<br/>");
+            for (var j = 0; j < temp.length; j++) {
+                if (temp[j].includes("Sinn Fein")) {
+                    chartData[0].seats++;
+                }
+                else if (temp[j].includes("SDLP")) {
+                    chartData[1].seats++;
+                }
+                else if (temp[j].includes("Alliance")) {
+                    chartData[2].seats++;
+                }
+                else if (temp[j].includes("Green Party")) {
+                    chartData[3].seats++;
+                }
+                else if (temp[j].includes("PBP")) {
+                    chartData[4].seats++;
+                }
+                else if (temp[j].includes("Independant")) {
+                    chartData[5].seats++;
+                }
+                else if (temp[j].includes("TUV")) {
+                    chartData[7].seats++;
+                }
+                else if (temp[j].includes("UUP")) {
+                    chartData[8].seats++;
+                }
+                else if (temp[j].includes("DUP")) {
+                    chartData[9].seats++;
+                }
+                else if (temp[j] != "") {
+                    chartData[6].seats++;
+                }
+            }
+        }
     }
     $('.expand').click(function () {
         $('#contentexpanded').slideToggle('slow');
     });
 
-    $('#save').click(function ()
-    {
+    $('#save').click(function () {
         var temp = $("#data").html().split("<tr>");
         temp.splice(0, 1);
-        for (var i = 0; i < temp.length; i++)
-        {
+        for (var i = 0; i < temp.length; i++) {
             var name = "";
             var output = "";
             var tempitems = temp[i].split("<th>");
-            name = tempitems[0].substring(tempitems[0].indexOf(">")+1, tempitems[0].length - 5);
+            name = tempitems[0].substring(tempitems[0].indexOf(">") + 1, tempitems[0].length - 5);
             tempitems.splice(0, 1);
-            for (var j = 0; j < tempitems.length; j++)
-            {
+            for (var j = 0; j < tempitems.length; j++) {
                 tempitems[j] = tempitems[j].replace("</th>", "<br/>");
                 tempitems[j] = tempitems[j].replace("</tr>", "");
                 tempitems[j] = tempitems[j].replace("</tbody>", "");
@@ -156,17 +288,18 @@ $(document).ready(function () {
                 output += tempitems[j];
             }
             temp[i] = output;
-            for (var k = 0; k < data.length; k++)
-            {
-                if (data[k].name === name)
-                {
+            for (var k = 0; k < data.length; k++) {
+                if (data[k].name === name) {
                     data[k].data = temp[i];
                 }
             }
         }
+        $('#contentexpanded').slideToggle('slow');
         $("#container").remove();
         $("body").append("<div id='container'></div>");
-        $('#contentexpanded').slideToggle('slow');
+        $("#chartdiv").remove();
+        $("body").append("<div id='chartdiv'></div>");
         generateMap();
+        generateChart();
     });
 });
