@@ -1,10 +1,44 @@
 ﻿#container {
-	height: 500px; 
-	width: 500px; 
-	margin: 0 auto; 
+    height: 500px;
+    width: 80%;
+    margin: 0 auto;
 }
+
+#chartdiv {
+  width: 400px;
+  height: 200px;
+  margin: 0 auto;
+  border: 1px dotted #ccc;
+}
+
 .loading {
-	margin-top: 10em;
-	text-align: center;
-	color: gray;
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+
+#contentexpanded {
+    display: none;
+}
+
+button {
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.expand {
+    background-color: #eee;
+    color: #444;
+    padding: 18px;
+    border: none;
+    outline: none;
+}
+
+#save {
+    height: 30px;
+    background-color: lightblue;
+    border: solid 2px;
 }
