@@ -5,13 +5,15 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{432EA177-5313-4B98-9E05-8EE0FB65C37C}"
 	ProjectSection(SolutionItems) = preProject
+		foundation.css = foundation.css
 		Highcharts.html = Highcharts.html
 		HighchartsScript.js = HighchartsScript.js
 		jquery-3.2.0.js = jquery-3.2.0.js
+		jquery.event.move.js = jquery.event.move.js
+		jquery.twentytwenty.js = jquery.twentytwenty.js
 		MyStylesForCharts.css = MyStylesForCharts.css
-		SocialMedia.css = SocialMedia.css
-		SocialMedia.html = SocialMedia.html
-		SocialMediaScript.js = SocialMediaScript.js
+		tweneytwenety.html = tweneytwenety.html
+		twentytwenty.css = twentytwenty.css
 	EndProjectSection
 EndProject
 Global
