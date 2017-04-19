@@ -1,4 +1,69 @@
-﻿.twentytwenty-horizontal .twentytwenty-handle:before, .twentytwenty-horizontal .twentytwenty-handle:after, .twentytwenty-vertical .twentytwenty-handle:before, .twentytwenty-vertical .twentytwenty-handle:after {
+﻿/*------------------------- Header ------------------------*/
+#header {
+	background:url(../images/bg-header.jpg);
+	height:130px;
+}
+#header div {
+	margin:0 auto;
+	overflow:hidden;
+	padding:0 0 0 29px;
+	width:931px;
+}
+#header div a#logo {
+	display:block;
+	float:left;
+	margin:25px 0 0;
+}
+#header div ul {
+	float:right;
+	list-style:none;
+	margin:0;
+	overflow:hidden;
+	padding:0;
+}
+#header div ul li {
+	float:left;
+	height:130px;
+	text-align:center;
+	width:110px;
+}
+#header div ul li a {
+	color:#787b66;
+	display:block;
+	height:130px;
+	letter-spacing:.075em;
+	line-height:150px;
+	text-align:center;
+	text-decoration:none;
+	text-shadow:0 1px 0 #fff;
+	width:110px;
+}
+#header div ul li.selected a {
+	background:url(../images/bg-nav-selected.png) repeat-x;
+}
+#header div ul li.selected a, #header div ul li a:hover {
+	color:#1bb5ac;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.twentytwenty-horizontal .twentytwenty-handle:before, .twentytwenty-horizontal .twentytwenty-handle:after, .twentytwenty-vertical .twentytwenty-handle:before, .twentytwenty-vertical .twentytwenty-handle:after {
   content: " ";
   display: block;
   background: white;
