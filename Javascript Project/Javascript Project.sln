@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		BlueImp.html = BlueImp.html
 		BlueImpStyle.css = BlueImpStyle.css
+		js\demo\demo.js = js\demo\demo.js
 		css\foundation.css = css\foundation.css
 		Highcharts.html = Highcharts.html
 		HighchartsScript.js = HighchartsScript.js
