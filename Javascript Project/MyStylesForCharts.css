@@ -5,10 +5,13 @@
 }
 
 #chartdiv {
-  width: 400px;
-  height: 200px;
+  width: 800px;
+  height: 400px;
   margin: 0 auto;
-  border: 1px dotted #ccc;
+}
+
+body {
+    background-color:beige;
 }
 
 .loading {
@@ -35,6 +38,7 @@ button {
     padding: 18px;
     border: none;
     outline: none;
+    height:65px;
 }
 
 #save {

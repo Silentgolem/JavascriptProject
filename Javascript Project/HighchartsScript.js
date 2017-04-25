@@ -141,7 +141,8 @@ $(document).ready(function () {
                 enabled: false
             },
             tooltip: {
-                pointFormat: '<span style="font-size:14px"><b>{series.name} - {point.name}</b></span><br/>{point.data}',
+                headerFormat: '',
+                pointFormat: '<span style="font-size:14px"><b>{series.name} - {point.name}</b></span><br/><span style="font-size:12px">{point.data}</span>',
                 positioner: function () {
                     return { x: 0, y: 375 };
                 }
@@ -163,7 +164,7 @@ $(document).ready(function () {
             "seats": 0
         }, {
             "party": "Green Party",
-            "colour": "#9bffa2",
+            "colour": "#00ff80",
             "seats": 0
         }, {
             "party": "PBP",
@@ -183,7 +184,7 @@ $(document).ready(function () {
             "seats": 0
         }, {
             "party": "UUP",
-            "colour": "#e8b4e7",
+            "colour": "#a64dff",
             "seats": 0
         }, {
             "party": "DUP",
@@ -211,8 +212,10 @@ $(document).ready(function () {
             "alphaField": "alpha",
             "labelsEnabled": false,
             "pullOutRadius": 0,
+            "fontSize": 14,
             "colorField": "colour",
             "pieY": "95%"
+
         });
     }
     function getData() {
@@ -229,6 +232,7 @@ $(document).ready(function () {
         output += "</table>";
         return output;
     }
+
     function getChartData() {
         for (var i = 0; i < data.length; i++) {
             var temp = data[i].data.split("<br/>");
