@@ -141,8 +141,7 @@ $(document).ready(function () {
                 enabled: false
             },
             tooltip: {
-                headerFormat: '<span style="font-size:12px">{series.name}</span><br/>',
-                pointFormat: '{point.data}',
+                pointFormat: '<span style="font-size:14px"><b>{series.name} - {point.name}</b></span><br/>{point.data}',
                 positioner: function () {
                     return { x: 0, y: 375 };
                 }
@@ -225,7 +224,7 @@ $(document).ready(function () {
             for (var j = 0; j < input.length; j++) {
                 output += "<th>" + input[j] + "</th>";
             }
-            output += "</tr>"
+            output += "</tr>";
         }
         output += "</table>";
         return output;
@@ -261,7 +260,7 @@ $(document).ready(function () {
                 else if (temp[j].includes("DUP")) {
                     chartData[9].seats++;
                 }
-                else if (temp[j] != "") {
+                else if (temp[j] !== "") {
                     chartData[6].seats++;
                 }
             }
