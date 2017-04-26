@@ -23,17 +23,16 @@
     "fullscreen"
   ],
   "homepage": "https://github.com/blueimp/Gallery",
-  "author": {
-    "name": "Sebastian Tschan",
-    "url": "https://blueimp.net"
-  },
+  "author": "Sebastian Tschan (https://blueimp.net)",
   "repository": {
     "type": "git",
     "url": "git://github.com/blueimp/Gallery.git"
   },
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.18.8",
     "clean-css": "3.4.21",
+    "gulp": "^3.9.1",
     "standard": "8.6.0",
     "uglify-js": "2.7.4"
   },
@@ -47,5 +46,11 @@
     "version": "npm run build && git add -A js css",
     "postversion": "git push --tags origin master master:gh-pages && npm publish"
   },
-  "main": "js/blueimp-gallery.js"
+  "main": "js/blueimp-gallery.js",
+  "bugs": {
+    "url": "https://github.com/blueimp/Gallery/issues"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }
