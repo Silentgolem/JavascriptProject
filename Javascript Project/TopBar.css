@@ -1,0 +1,33 @@
+﻿#header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightblue;
+}
+
+#header {
+    width:100%;
+}
+
+#header li {
+    float: left;
+}
+
+#header li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+    text-align: center;
+    border-bottom: none;
+    font-size: 18px;
+    font-family: 'Trebuchet MS';
+    padding-top:30px;
+}
+
+#header li a:hover {
+    background-color: #eee;
+    border-bottom: none;
+}
