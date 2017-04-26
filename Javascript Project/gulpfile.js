@@ -1,3 +1,4 @@
+/// <binding ProjectOpened='watch' />
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 
