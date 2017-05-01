@@ -1,1 +1,1 @@
-jQuery("#wowslider-container").wowSlider({effect:"rotate",prev:"",next:"",duration:80*100,delay:20*100,width:800,height:400,autoPlay:true,stopOnHover:true,loop:false,bullets:true,caption:true,captionEffect:"slide",controls:true,logo:"",images:3});
+jQuery("#wowslider-container").wowSlider({effect:"rotate",prev:"",next:"",duration:80*100,delay:20*100,width:800,height:400,autoPlay:true,stopOnHover:true,loop:false,bullets:true,caption:false,captionEffect:"slide",controls:true,logo:"",images:2});

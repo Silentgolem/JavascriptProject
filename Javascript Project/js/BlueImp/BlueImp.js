@@ -7,6 +7,18 @@
  *
  * Licensed under the MIT license:
  * https://opensource.org/licenses/MIT
+
+       url: 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=19c593fbc7e6e191716c96844602d0f9&photoset_id=72157682989569756&user_id=148525640%40N05&format=json&nojsoncallback=1&auth_token=72157680430306982-bc59dc18f177f0e9&api_sig=5f81a4952bf4414613756feeed17b279',
+    data: {
+        format: 'json',
+        method: 'flickr.photosets.getPhotos',
+        photoset_ID: '72157682989569756',
+        user_ID: '148525640@N05',
+      api_key: '750c3a4b0f0103b3a5b0c635adb67c88' // jshint ignore:line
+    },
+
+
+
  */
 
 /* global blueimp, $ */
