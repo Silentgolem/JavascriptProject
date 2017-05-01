@@ -144,7 +144,7 @@ $(document).ready(function () {
                 headerFormat: '',
                 pointFormat: '<span style="font-size:14px"><b>{series.name} - {point.name}</b></span><br/><span style="font-size:12px">{point.data}</span>',
                 positioner: function () {
-                    return { x: 0, y: 375 };
+                    return { x: 0, y: 390 };
                 }
             }
         });
