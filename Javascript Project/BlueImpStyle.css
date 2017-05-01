@@ -1,6 +1,15 @@
 ﻿/* Website template by freewebsitetemplates.com */
 
 /*------------------------- Layout styles ------------------------*/
+h1{
+    text-align:center;
+}
+p{
+    text-align:center;
+}
+a:hover{
+    color:chartreuse;
+}
 p {
 	font-size:12px;
 	line-height:24px;
@@ -18,8 +27,8 @@ p a {
 }
 
 #logo{
-    height:100px;
-    width:400px;
+    height:50%;
+    width:50%;
 }
 
 /*------------------------- Body ------------------------*/

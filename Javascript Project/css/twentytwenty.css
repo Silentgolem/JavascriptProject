@@ -1,4 +1,8 @@
-﻿/*This sets up where the images are*/
+﻿h1{
+    text-align: center;
+}
+
+/*This sets up where the images are*/
 #image1{
     height: auto;
     width: auto;
