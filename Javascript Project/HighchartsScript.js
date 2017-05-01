@@ -14,7 +14,7 @@ $(document).ready(function () {
                 {
                     "name": "East Derry",
                     "path": "M627,-982,590,-978,560,-969,549,-950,485,-968,478,-975,473,-969,458,-921,448,-914L448,-906L437,-891,409,-893,392,-875,409,-843,418,-848,413,-825,418,-822,419,-804,440,-788,430,-740,463,-741,475,-729,493,-753,504,-744,519,-759,536,-774,528,-780,546,-797,563,-789,576,-804,620,-806,611,-827,602,-842,611,-867,597,-896,611,-905,614,-935L630,-935z",
-                    "data": "Independant Claire Sugden<br/>DUP Maurice Bradley<br/>DUP George Robinson<br/>Sinn Fein Caoimhe Archibald<br/>SDLP John Dallat"
+                    "data": "Independent Claire Sugden<br/>DUP Maurice Bradley<br/>DUP George Robinson<br/>Sinn Fein Caoimhe Archibald<br/>SDLP John Dallat"
                 },
                 {
                     "name": "Fermanagh And South Tyrone",
@@ -108,7 +108,7 @@ $(document).ready(function () {
         "party": "PBP",
         "seats": 0
     }, {
-        "party": "Independant",
+        "party": "Independent",
         "seats": 0
     }, {
         "party": "Other",
@@ -171,7 +171,7 @@ $(document).ready(function () {
             "colour": "#670c8e",
             "seats": 0
         }, {
-            "party": "Independant",
+            "party": "Independent",
             "colour": "#e3e4e5",
             "seats": 0
         }, {
@@ -252,7 +252,7 @@ $(document).ready(function () {
                 else if (temp[j].includes("PBP")) {
                     chartData[4].seats++;
                 }
-                else if (temp[j].includes("Independant")) {
+                else if (temp[j].includes("Independent")) {
                     chartData[5].seats++;
                 }
                 else if (temp[j].includes("TUV")) {
