@@ -1,16 +1,4 @@
-﻿<!--
-    function Fullscreen() {
-    var body = document.body;
-    if (body.requestFullscreen) {
-        body.requestFullscreen();
-    } else if (body.mozRequestFullScreen) {
-        body.mozRequestFullScreen();
-    } else if (body.webkitRequestFullscreen) {
-        body.webkitRequestFullscreen();
-    }
-}
-    -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
@@ -46,42 +34,44 @@
     <br>
 
     <!-- Start WOWSlider.com BODY section -->
-    <div id="wowslider-container">
-        <div class="ws_images">
-            <ul>
-                <li>
-                    <div id="image1">
-                        <div class="large-8 columns">
-                            <div class="twentytwenty-container">
-                                <img src="img/After_3.jpg" />
-                                <img src="img/Before_3.jpg" />
+    <div id="MasterDiv">
+        <div id="wowslider-container">
+            <div class="ws_images">
+                <ul>
+                    <li>
+                        <div id="image1">
+                            <div class="large-8 columns">
+                                <div class="twentytwenty-container">
+                                    <img src="img/After_3.jpg" />
+                                    <img src="img/Before_3.jpg" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div id="image3">
-                        <div class="large-8 columns">
-                            <div class="twentytwenty-container" data-orientation="vertical">
-                                <img src="img/After_2.jpg" />
-                                <img src="img/Before_2.jpg" />
+                    </li>
+                    <li>
+                        <div id="image3">
+                            <div class="large-8 columns">
+                                <div class="twentytwenty-container" data-orientation="vertical">
+                                    <img src="img/After_2.jpg" />
+                                    <img src="img/Before_2.jpg" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div id="image2">
-                        <div class="large-8 columns">
-                            <div class="twentytwenty-container" data-orientation="vertical">
-                                <img src="img/After_1.jpg" />
-                                <img src="img/Before_1.jpg" />
+                    </li>
+                    <li>
+                        <div id="image2">
+                            <div class="large-8 columns">
+                                <div class="twentytwenty-container" data-orientation="vertical">
+                                    <img src="img/After_1.jpg" />
+                                    <img src="img/Before_1.jpg" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="ws_frame"></a>
         </div>
-        <a href="#" class="ws_frame"></a>
     </div>
 
     <div id="footer">
@@ -99,6 +89,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="js/jquery.event.move.js"></script>
     <script src="js/jquery.twentytwenty.js"></script>
+    <script src="js/Fullscreen.js"></script>
     <script>
         $(window).load(function () {
             $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({ default_offset_pct: 0.7 });
